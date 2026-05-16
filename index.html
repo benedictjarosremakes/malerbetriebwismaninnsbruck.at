@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Malerbetrieb Wisman | Innsbruck</title>
+    <link rel="icon" href="https://malerbetriebwismaninnsbruck.at/wp-content/uploads/2016/10/favicon.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <style>
+        :root {
+            /* Color Palette */
+            --color-bg: #F9F8F4;
+            --color-surface: #EBE9E4;
+            --color-text: #2C2B2A;
+            --color-text-muted: #7A7873;
+            --color-accent: #4A5D54;
+            --color-accent-light: #8B5A4B;
+
+            /* Typography */
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Inter', sans-serif;
+            
+            --text-xs: clamp(0.75rem, 1.5vw, 0.875rem);
+            --text-sm: clamp(0.875rem, 1.8vw, 1rem);
+            --text-base: clamp(1rem, 2vw, 1.125rem);
+            --text-lg: clamp(1.125rem, 2.5vw, 1.375rem);
+            --text-xl: clamp(1.375rem, 3vw, 1.75rem);
+            --text-2xl: clamp(1.75rem, 4vw, 2.5rem);
+            --text-3xl: clamp(2.25rem, 5vw, 3.5rem);
+            --text-4xl: clamp(2rem, 7vw, 4.5rem); /* Reduced for mobile */
+
+            /* Spacing */
+            --space-1: 0.25rem;
+            --space-2: 0.5rem;
+            --space-3: 0.75rem;
+            --space-4: 1rem;
+            --space-6: 1.5rem;
+            --space-8: 2rem;
+            --space-12: 3rem;
+            --space-16: 4rem;
+            --space-24: 6rem;
+            --space-section: clamp(4rem, 10vw, 8rem);
+
+            /* Z-Index */
+            --z-base: 0;
+            --z-raised: 10;
+            --z-dropdown: 100;
+            --z-sticky: 200;
+            --z-overlay: 500;
+            --z-modal: 1000;
+            --z-toast: 2000;
+            --z-max: 9000;
+        }
+
+        /* Reset & Base */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            font-family: var(--font-body);
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        body {
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Typography Elements */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-heading);
+            font-weight: 500;
+            line-height: 1.15;
+            color: var(--color-text);
+            letter-spacing: -0.02em;
+        }
+
+        h1 { 
+            font-size: var(--text-4xl); 
+            margin-bottom: var(--space-6); 
+            word-wrap: break-word;
+            hyphens: auto;
+        }
+        h2 { font-size: var(--text-3xl); margin-bottom: var(--space-8); }
+        h3 { font-size: var(--text-2xl); margin-bottom: var(--space-4); }
+        
+        p { margin-bottom: var(--space-4); color: var(--color-text); font-weight: 300; }
+        p:last-child { margin-bottom: 0; }
+        
+        a { color: inherit; text-decoration: none; transition: color 0.2s ease; }
+        
+        ul, ol { list-style: none; }
+
+        /* Icons */
+        [data-lucide] {
+            display: inline-block;
+            vertical-align: middle;
+            flex-shrink: 0;
+            line-height: 1;
+            pointer-events: none;
+            width: 1.2em;
+            height: 1.2em;
+            stroke-width: 1.5;
+        }
+
+        /* Layout */
+        .container {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 clamp(1.5rem, 5vw, 3rem);
+        }
+
+        section {
+            padding: var(--space-section) 0;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5em;
+            padding: 1rem 2rem;
+            font-family: var(--font-body);
+            font-size: var(--text-base);
+            font-weight: 400;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: var(--z-raised);
+            letter-spacing: 0.02em;
+        }
+
+        .btn-primary {
+            background-color: var(--color-accent);
+            color: var(--color-bg);
+        }
+
+        .btn-primary:hover, .btn-primary:focus-visible {
+            background-color: var(--color-accent-light);
+            outline: none;
+        }
+
+        /* Skip Link */
+        .skip-link {
+            position: absolute;
+            top: -100px;
+            left: 0;
+            background: var(--color-accent);
+            color: var(--color-bg);
+            padding: 1rem;
+            z-index: var(--z-max);
+            transition: top 0.2s ease;
+        }
+        .skip-link:focus { top: 0; }
+
+        /* Header & Navigation */
+        .site-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1001; /* Literal integer per rules */
+            background-color: rgba(249, 248, 244, 0.95);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid rgba(44, 43, 42, 0.05);
+            padding: 1.25rem 0;
+            transition: transform 0.3s ease;
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: var(--text-xl);
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            color: var(--color-text);
+            z-index: 1002;
+            position: relative;
+        }
+
+        /* Desktop Nav */
+        .desktop-nav {
+            display: none;
+        }
+
+        .desktop-nav ul {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .desktop-nav a {
+            font-size: var(--text-sm);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--color-text-muted);
+        }
+
+        .desktop-nav a:hover {
+            color: var(--color-text);
+        }
+
+        /* Mobile Nav Toggle */
+        .nav-toggle {
+            position: absolute;
+            right: clamp(1.5rem, 5vw, 3rem);
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1002; /* Literal integer highest */
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            width: 44px;
+            height: 44px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .nav-toggle span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background-color: var(--color-text);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .nav-toggle[aria-expanded="true"] span:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+        .nav-toggle[aria-expanded="true"] span:nth-child(2) {
+            opacity: 0;
+            transform: scaleX(0);
+        }
+        .nav-toggle[aria-expanded="true"] span:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+
+        /* Mobile Overlay */
+        .mobile-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 1000; /* Literal integer below header */
+            background-color: var(--color-bg);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .mobile-overlay.is-open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mobile-nav-list {
+            text-align: center;
+        }
+
+        .mobile-nav-list a {
+            display: block;
+            font-family: var(--font-heading);
+            font-size: var(--text-3xl);
+            padding: 1rem 0;
+            color: var(--color-text);
+        }
+
+        @media (min-width: 769px) {
+            .nav-toggle { display: none; pointer-events: none; }
+            .desktop-nav { display: block; }
+            .mobile-overlay { display: none !important; }
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 8rem; /* Increased to prevent header overlap */
+            padding-bottom: 4rem;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--space-12);
+            align-items: center;
+        }
+
+        .hero-content {
+            max-width: 600px;
+        }
+
+        /* Beautifully Framed CSS Placeholder */
+        .hero-visual {
+            width: 100%;
+            aspect-ratio: 4/5;
+            background: linear-gradient(135deg, var(--color-surface) 0%, #E2DFD8 100%);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(44, 43, 42, 0.05);
+            box-shadow: inset 0 0 40px rgba(249, 248, 244, 0.5);
+        }
+
+        .hero-visual::after {
+            content: '';
+            position: absolute;
+            inset: 1.5rem;
+            border: 1px solid rgba(122, 120, 115, 0.3);
+            background: transparent;
+        }
+
+        .hero-visual::before {
+            content: 'Editorial Image';
+            font-family: var(--font-heading);
+            color: var(--color-text-muted);
+            font-style: italic;
+            font-size: var(--text-lg);
+            letter-spacing: 0.05em;
+            z-index: 2;
+        }
+
+        @media (min-width: 1024px) {
+            .hero-grid {
+                grid-template-columns: 1.2fr 0.8fr;
+                gap: var(--space-24);
+            }
+            .hero-visual {
+                aspect-ratio: 3/4;
+            }
+        }
+
+        /* Services Section - Grid Breaking */
+        .services {
+            background-color: var(--color-bg);
+            position: relative;
+        }
+
+        .services-wrapper {
+            position: relative;
+            padding: var(--space-12) 0;
+        }
+
+        .services-bg {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 80%;
+            height: 100%;
+            background-color: var(--color-surface);
+            z-index: 0;
+        }
+
+        .services-content {
+            position: relative;
+            z-index: 1;
+            background-color: var(--color-bg);
+            padding: var(--space-12);
+            max-width: 700px;
+            margin-top: var(--space-8);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.02);
+        }
+
+        @media (min-width: 768px) {
+            .services-bg { width: 60%; }
+            .services-content { padding: var(--space-16); margin-top: var(--space-16); }
+        }
+
+        /* Projects Section */
+        .projects {
+            background-color: var(--color-bg);
+        }
+
+        .projects-header {
+            max-width: 600px;
+            margin-bottom: var(--space-16);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--space-8);
+        }
+
+        .project-card {
+            background-color: var(--color-surface);
+            padding: var(--space-8);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: 240px;
+            border-left: 2px solid transparent;
+            transition: border-color 0.3s ease;
+        }
+
+        .project-card:hover {
+            border-left-color: var(--color-accent);
+        }
+
+        .project-card h3 {
+            font-size: var(--text-xl);
+            margin-bottom: var(--space-2);
+        }
+
+        .project-card p {
+            color: var(--color-text-muted);
+            font-size: var(--text-sm);
+        }
+
+        @media (min-width: 768px) {
+            .projects-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .project-card:nth-child(even) {
+                transform: translateY(40px);
+            }
+        }
+
+        /* Footer / Contact */
+        .site-footer {
+            background-color: var(--color-accent);
+            color: var(--color-bg);
+            padding: clamp(4rem, 8vw, 7rem) 0 2rem;
+        }
+
+        .site-footer h2, .site-footer p, .site-footer a {
+            color: var(--color-bg);
+        }
+
+        .site-footer h2 {
+            margin-bottom: var(--space-6);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--space-12);
+            margin-bottom: var(--space-16);
+        }
+
+        .footer-col {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-4);
+        }
+
+        .footer-logo {
+            font-family: var(--font-heading);
+            font-size: var(--text-2xl);
+            font-weight: 600;
+            margin-bottom: var(--space-2);
+            display: block;
+        }
+
+        .contact-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75em;
+            font-weight: 300;
+        }
+
+        .contact-item [data-lucide] {
+            color: var(--color-accent-light);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(249, 248, 244, 0.2);
+            padding-top: var(--space-6);
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-4);
+            font-size: var(--text-sm);
+            font-weight: 300;
+            color: rgba(249, 248, 244, 0.7);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: var(--space-6);
+        }
+
+        .footer-links button {
+            background: none;
+            border: none;
+            color: inherit;
+            font: inherit;
+            cursor: pointer;
+            text-decoration: underline;
+            text-underline-offset: 4px;
+            padding: 0;
+        }
+
+        .footer-links button:hover {
+            color: var(--color-bg);
+        }
+
+        @media (min-width: 768px) {
+            .footer-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .footer-bottom {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+            }
+        }
+
+        /* Scroll Reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(22px);
+            transition: opacity 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .reveal { opacity: 1; transform: none; transition: none; }
+        }
+
+        /* Modals */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: var(--z-modal);
+            background-color: rgba(28, 25, 23, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .modal-overlay.is-open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background-color: var(--color-bg);
+            padding: 2.5rem;
+            max-width: 480px;
+            width: 100%;
+            position: relative;
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+        }
+
+        .modal-overlay.is-open .modal-content {
+            transform: translateY(0);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            color: var(--color-text-muted);
+            padding: 0.5rem;
+        }
+
+        .modal-close:hover {
+            color: var(--color-text);
+        }
+
+        .modal-title {
+            font-family: var(--font-heading);
+            font-size: var(--text-2xl);
+            margin-bottom: 1rem;
+            color: var(--color-text);
+        }
+
+        .modal-body {
+            color: var(--color-text);
+            font-weight: 300;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .modal-links a {
+            color: var(--color-accent);
+            text-decoration: underline;
+            text-underline-offset: 4px;
+        }
+
+        /* Cookie Banner */
+        .cookie-banner {
+            position: fixed;
+            bottom: 1.5rem;
+            left: 1.5rem;
+            right: 1.5rem;
+            max-width: 400px;
+            background-color: var(--color-surface);
+            padding: 1.5rem;
+            z-index: var(--z-toast);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transform: translateY(150%);
+            transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+            border: 1px solid rgba(44, 43, 42, 0.05);
+        }
+
+        .cookie-banner.is-visible {
+            transform: translateY(0);
+        }
+
+        .cookie-text {
+            font-size: var(--text-sm);
+            margin-bottom: 1rem;
+            color: var(--color-text);
+        }
+
+        .cookie-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .btn-cookie {
+            padding: 0.5rem 1rem;
+            font-size: var(--text-xs);
+            border: none;
+            cursor: pointer;
+            transition: background 0.2s;
+            font-family: var(--font-body);
+        }
+
+        .btn-accept {
+            background-color: var(--color-accent);
+            color: var(--color-bg);
+        }
+        .btn-accept:hover { background-color: var(--color-accent-light); }
+
+        .btn-decline {
+            background-color: transparent;
+            color: var(--color-text-muted);
+            border: 1px solid var(--color-text-muted);
+        }
+        .btn-decline:hover { background-color: rgba(0,0,0,0.05); color: var(--color-text); }
+
+        @media (min-width: 640px) {
+            .cookie-banner { right: auto; }
+        }
+
+    </style>
+</head>
+<body>
+<!-- DEMO NOTICE BANNER - benedictjaros.com -->
+<style>
+#__demo_spacer{display:block;}
+#__demo_notice,#__demo_notice *{box-sizing:border-box;margin:0;padding:0;}
+#__demo_notice{
+  position:fixed;top:0;left:0;right:0;z-index:99999;
+  background:rgba(9,9,11,.97);
+  backdrop-filter:blur(14px) saturate(160%);
+  -webkit-backdrop-filter:blur(14px) saturate(160%);
+  border-bottom:1px solid rgba(255,255,255,.07);
+  font-family:system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;
+}
+#__demo_inner{
+  max-width:1280px;margin:0 auto;
+  padding:0 44px 0 18px;min-height:38px;
+  display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+}
+#__demo_dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;background:#f5c842;box-shadow:0 0 7px rgba(245,200,66,.55);}
+#__demo_label{color:#f5c842;font-weight:700;font-size:10px;letter-spacing:.12em;text-transform:uppercase;flex-shrink:0;}
+#__demo_divider{color:rgba(255,255,255,.15);font-size:12px;flex-shrink:0;}
+#__demo_text{color:rgba(255,255,255,.45);font-size:11.5px;line-height:1.45;flex:1 1 160px;}
+#__demo_links{display:flex;align-items:center;gap:6px;flex-shrink:0;}
+#__demo_links a{
+  color:rgba(255,255,255,.38);font-size:11px;text-decoration:none;
+  border-bottom:1px solid rgba(255,255,255,.14);
+  transition:color .15s,border-color .15s;white-space:nowrap;
+}
+#__demo_links a:hover{color:rgba(255,255,255,.75);border-color:rgba(255,255,255,.4);}
+#__demo_link_sep{color:rgba(255,255,255,.15);font-size:10px;}
+#__demo_close{
+  position:absolute;right:0;top:0;bottom:0;width:40px;
+  background:none;border:none;cursor:pointer;
+  color:rgba(255,255,255,.28);font-size:16px;line-height:1;
+  display:flex;align-items:center;justify-content:center;
+  transition:color .15s;
+}
+#__demo_close:hover{color:rgba(255,255,255,.7);}
+@media(max-width:560px){
+  #__demo_inner{padding:7px 44px 7px 14px;gap:6px;}
+  #__demo_text{font-size:11px;flex:1 1 100%;order:3;}
+  #__demo_dot,#__demo_label{order:1;}
+  #__demo_divider{order:2;}
+  #__demo_links{order:4;}
+}
+</style>
+<div id="__demo_spacer"></div>
+<div id="__demo_notice" role="banner" aria-label="Demo notice">
+  <div id="__demo_inner">
+    <span id="__demo_dot"></span>
+    <span id="__demo_label">Demo</span>
+    <span id="__demo_divider">/</span>
+    <span id="__demo_text">Unofficial remake &mdash; not the real website. All content &amp; trademarks belong to their owners.</span>
+    <div id="__demo_links">
+      <a href="https://benedictjaros.com/impressum" target="_blank" rel="noopener noreferrer">Impressum</a>
+      <span id="__demo_link_sep">&middot;</span>
+      <a href="https://benedictjaros.com/datenschutz" target="_blank" rel="noopener noreferrer">Datenschutz</a>
+    </div>
+  </div>
+  <button id="__demo_close" aria-label="Close demo notice">&#x2715;</button>
+</div>
+<script>
+(function () {
+  var spacer = document.getElementById('__demo_spacer');
+  var b = document.getElementById('__demo_notice');
+  var x = document.getElementById('__demo_close');
+  if (!b || !spacer) return;
+  function sync() { spacer.style.height = b.offsetHeight + 'px'; }
+  function hide() {
+    b.style.display = 'none'; spacer.style.height = '0';
+    try { sessionStorage.setItem('__demo_closed', '1'); } catch (e) {}
+  }
+  try { if (sessionStorage.getItem('__demo_closed')) { b.style.display = 'none'; spacer.style.height = '0'; return; } } catch (e) {}
+  sync();
+  window.addEventListener('resize', function () { if (b.style.display !== 'none') sync(); });
+  if (x) x.addEventListener('click', hide);
+}());
+</script>
+
+
+    <a class="skip-link" href="#main">Zum Inhalt springen</a>
+
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="#" class="logo">Wisman</a>
+            
+            <nav class="desktop-nav">
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#leistungen">Leistungen</a></li>
+                    <li><a href="#referenzen">Referenzen</a></li>
+                    <li><a href="#kontakt">Kontakt</a></li>
+                </ul>
+            </nav>
+
+            <button class="nav-toggle" aria-expanded="false" aria-label="Menü öffnen" aria-controls="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <div class="mobile-overlay" id="mobile-menu" role="dialog" aria-modal="true" aria-label="Mobiles Menü">
+        <nav class="mobile-nav-list">
+            <a href="#home">Home</a>
+            <a href="#leistungen">Leistungen</a>
+            <a href="#referenzen">Referenzen</a>
+            <a href="#kontakt">Kontakt</a>
+        </nav>
+    </div>
+
+    <main id="main">
+        
+        <section id="home" class="hero">
+            <div class="container hero-grid">
+                <div class="hero-content reveal">
+                    <h1>Willkommen beim Malerbetrieb Wisman</h1>
+                    <p>Als erfahrener Maler in Innsbruck biete ich Ihnen hochwertige Malerarbeiten mit viel Liebe zum Detail an. Entdecken Sie meine Leistungen und lassen Sie sich von meinen bisherigen Projekten inspirieren. Haben Sie Fragen oder wünschen Sie ein unverbindliches Angebot? Kontaktieren Sie mich gerne!</p>
+                    <div style="margin-top: var(--space-8);">
+                        <a href="#kontakt" class="btn btn-primary">
+                            Kontakt aufnehmen <i data-lucide="arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="hero-visual reveal" style="--i:1" aria-hidden="true">
+                    <!-- Beautifully framed CSS placeholder per absolute rules (no fake image URLs) -->
+                </div>
+            </div>
+        </section>
+
+        <section id="leistungen" class="services">
+            <div class="services-wrapper">
+                <div class="services-bg"></div>
+                <div class="container">
+                    <div class="services-content reveal">
+                        <h2>Leistungen</h2>
+                        <p>Was Sie sich ausmalen, setze ich für Sie um. Ich stehe für Qualität, Liebe zum Handwerk und hochwertige Materialien. Sowohl Innen als Außen sind Sie bei mir richtig.</p>
+                        <p>Spezialisiert habe ich mich im Verwenden von hochpigmentierten Farben wie „Farrow & Ball“ und „Little Greene“, um Räumen eine unvergleichliche Tiefe und Eleganz zu verleihen.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="referenzen" class="projects">
+            <div class="container">
+                <div class="projects-header reveal">
+                    <h2>Projekte & Referenzen</h2>
+                    <p>Zahlreiche Projekte wurden bereits erfolgreich realisiert, überwiegend für Privatkunden, denen der Werterhalt und die individuelle Verschönerung ihres Zuhauses am Herzen liegen. Natürlich übernehme ich auch Aufträge für Geschäftskunden. Immer mit dem Ziel, dass Sie als Kunde rundum zufrieden sind.</p>
+                </div>
+                
+                <div class="projects-grid">
+                    <div class="project-card reveal" style="--i:0">
+                        <h3>Historische Altbauwohnung</h3>
+                        <p>Sanfte Restaurierung und Neugestaltung mit Farrow & Ball 'Setting Plaster'.</p>
+                    </div>
+                    <div class="project-card reveal" style="--i:1">
+                        <h3>Boutique Hotel Lobby</h3>
+                        <p>Elegantes Farbkonzept in tiefen Grüntönen von Little Greene für eine einladende Atmosphäre.</p>
+                    </div>
+                    <div class="project-card reveal" style="--i:0">
+                        <h3>Privates Chalet</h3>
+                        <p>Holzveredelung und harmonische Wandfarben, passend zur alpinen Umgebung.</p>
+                    </div>
+                    <div class="project-card reveal" style="--i:1">
+                        <h3>Moderne Stadtvilla</h3>
+                        <p>Minimalistisches Design unterstrichen durch kalkmatte Oberflächenstrukturen.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer id="kontakt" class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <span class="footer-logo">Wisman</span>
+                    <p>Hochwertige Malerarbeiten mit Liebe zum Detail in Innsbruck.</p>
+                </div>
+                
+                <div class="footer-col">
+                    <h2>Kontakt</h2>
+                    <div class="contact-item">
+                        <i data-lucide="map-pin"></i>
+                        <span>Laurens Wisman<br>Holzgasse 4<br>6020 Innsbruck</span>
+                    </div>
+                    <div class="contact-item">
+                        <i data-lucide="phone"></i>
+                        <a href="tel:+436705527617">+43 6 705527617</a>
+                    </div>
+                    <div class="contact-item">
+                        <i data-lucide="mail"></i>
+                        <a href="mailto:info@malerbetriebwismaninnsbruck.at">info@malerbetriebwismaninnsbruck.at</a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h2>Navigation</h2>
+                    <ul style="display: flex; flex-direction: column; gap: 0.5rem;">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#leistungen">Leistungen</a></li>
+                        <li><a href="#referenzen">Referenzen</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>© 2025 Malerbetrieb Wisman. Laurens Wisman — All original content, images & trademarks are property of their respective owners. Website rebuilt by Benedict Jaros.</p>
+                <div class="footer-links">
+                    <button type="button" class="js-legal-trigger">Impressum</button>
+                    <button type="button" class="js-legal-trigger">Datenschutz</button>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Legal Modal Popup -->
+    <div class="modal-overlay" id="legal-modal" role="dialog" aria-modal="true" aria-labelledby="legal-title">
+        <div class="modal-content">
+            <button class="modal-close" aria-label="Schließen" data-close-modal>
+                <i data-lucide="x"></i>
+            </button>
+            <h2 id="legal-title" class="modal-title">Rechtliche Hinweise</h2>
+            <p class="modal-body">Diese Website ist ein Demo-Remake und wurde nicht von oder für das Unternehmen erstellt. Die Inhalte dienen ausschließlich Demonstrationszwecken. Für unsere eigenen rechtlichen Informationen:</p>
+            <div class="modal-links">
+                <a href="https://benedictjaros.com/impressum" target="_blank" rel="noopener noreferrer">Impressum</a>
+                <a href="https://benedictjaros.com/datenschutz" target="_blank" rel="noopener noreferrer">Datenschutz</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cookie Banner -->
+    <div class="cookie-banner" id="cookie-banner" role="region" aria-label="Cookie Einwilligung">
+        <p class="cookie-text">Wir verwenden Cookies, um Ihre Erfahrung auf unserer Website zu verbessern. Durch die weitere Nutzung stimmen Sie der Verwendung von essentiellen Cookies zu.</p>
+        <div class="cookie-actions">
+            <button class="btn-cookie btn-accept" id="cookie-accept">Akzeptieren</button>
+            <button class="btn-cookie btn-decline" id="cookie-decline">Ablehnen</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize Icons
+            lucide.createIcons();
+
+            // Mobile Navigation
+            const navToggle = document.querySelector('.nav-toggle');
+            const mobileOverlay = document.getElementById('mobile-menu');
+            const mobileLinks = mobileOverlay.querySelectorAll('a');
+
+            function toggleMenu() {
+                const isExpanded = navToggle.getAttribute('aria-expanded') === 'true';
+                navToggle.setAttribute('aria-expanded', !isExpanded);
+                mobileOverlay.classList.toggle('is-open');
+                document.body.style.overflow = isExpanded ? '' : 'hidden';
+            }
+
+            navToggle.addEventListener('click', toggleMenu);
+
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (mobileOverlay.classList.contains('is-open')) {
+                        toggleMenu();
+                    }
+                });
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && mobileOverlay.classList.contains('is-open')) {
+                    toggleMenu();
+                }
+            });
+
+            // Scroll Reveal Observer
+            const revealElements = document.querySelectorAll('.reveal');
+            const revealOptions = {
+                threshold: 0.12,
+                rootMargin: "0px 0px -50px 0px"
+            };
+
+            const revealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, revealOptions);
+
+            revealElements.forEach(el => revealObserver.observe(el));
+
+            // Modals Logic
+            const legalTriggers = document.querySelectorAll('.js-legal-trigger');
+            const legalModal = document.getElementById('legal-modal');
+            const closeButtons = document.querySelectorAll('[data-close-modal]');
+
+            function openModal(modal) {
+                modal.classList.add('is-open');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeModal(modal) {
+                modal.classList.remove('is-open');
+                document.body.style.overflow = '';
+            }
+
+            legalTriggers.forEach(trigger => {
+                trigger.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    openModal(legalModal);
+                });
+            });
+
+            closeButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const modal = btn.closest('.modal-overlay');
+                    if (modal) closeModal(modal);
+                });
+            });
+
+            document.querySelectorAll('.modal-overlay').forEach(overlay => {
+                overlay.addEventListener('click', (e) => {
+                    if (e.target === overlay) {
+                        closeModal(overlay);
+                    }
+                });
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    const openModalEl = document.querySelector('.modal-overlay.is-open');
+                    if (openModalEl) closeModal(openModalEl);
+                }
+            });
+
+            // Cookie Banner Logic
+            const cookieBanner = document.getElementById('cookie-banner');
+            const btnAccept = document.getElementById('cookie-accept');
+            const btnDecline = document.getElementById('cookie-decline');
+            const cookieConsent = localStorage.getItem('cookie_consent');
+
+            if (!cookieConsent) {
+                // Small delay for entrance animation
+                setTimeout(() => {
+                    cookieBanner.classList.add('is-visible');
+                }, 1000);
+            }
+
+            function handleCookieChoice(choice) {
+                localStorage.setItem('cookie_consent', choice);
+                cookieBanner.classList.remove('is-visible');
+            }
+
+            btnAccept.addEventListener('click', () => handleCookieChoice('accepted'));
+            btnDecline.addEventListener('click', () => handleCookieChoice('declined'));
+        });
+    </script>
+</body>
+</html>
